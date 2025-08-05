@@ -11,6 +11,10 @@ const DB_STRING = process.env.DATABASE_STRING.replace(
   process.env.DATABASE_PASSWORD,
 );
 
+if (!process.env.DATABASE_STRING || !process.env.DATABASE_PASSWORD) {
+  throw new Error('Missing DATABASE_STRING or DATABASE_PASSWORD env var');
+}
+
 mongoose.connect(DB_STRING).then(() => console.log('DB connected succefully'));
 
 app.listen(port, () => {

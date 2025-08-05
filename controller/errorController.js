@@ -40,11 +40,6 @@ function sendProdError(err, req, res) {
         message: 'Please login again. Thanks',
       });
     }
-
-    // return res.status(err.statusCode).json({
-    //   status: err.status,
-    //   message: 'Something went Wrong',
-    // });
   }
 }
 
@@ -61,12 +56,12 @@ module.exports = (err, req, res, next) => {
   err.status = err.status || 'error';
   err.statusCode = err.statusCode || 500;
 
+  console.log(err);
+
   if (process.env.NODE_ENV === 'development')
     return sendDevError(err, req, res);
 
   if (process.env.NODE_ENV === 'production') {
-    // let error = structuredClone(err);
-    
     let error = err;
     error.message = err.message;
 
