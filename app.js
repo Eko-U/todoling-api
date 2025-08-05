@@ -15,12 +15,14 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 //Middlewares
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(morgan('dev'));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(cookieParser());
+
 app.use(helmet());
+
 app.use(
   cors({
     origin: 'http://127.0.0.1:5500',
