@@ -25,7 +25,7 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: 'http://127.0.0.1:5500',
+    origin: 'https://todoling-now.netlify.app/',
     credentials: true,
   }),
 );
