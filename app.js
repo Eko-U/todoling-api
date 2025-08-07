@@ -25,7 +25,18 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: 'https://todoling-now.netlify.app',
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        'http://127.0.0.1:5500',
+        'https://todoling-now.netlify.app',
+      ];
+
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('CORS not allowed from this origin'));
+      }
+    },
     credentials: true,
   }),
 );
