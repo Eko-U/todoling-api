@@ -49,6 +49,8 @@ exports.login = catchAsync(async (req, res, next) => {
   const cookiesOptions = {
     expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
     httpOnly: true,
+    secure: true,
+    sameSite: 'None',
   };
 
   res.cookie('JWT_TOKEN', token, cookiesOptions);
